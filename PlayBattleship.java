@@ -226,13 +226,13 @@ public class PlayBattleship extends JFrame implements ActionListener {
                         + "<li>A submarine that sinks after 3 hits</li>"
                         + "<li>A destroyer that sinks after 2 hits</li></ul></html>"
                         + "\nYour opponent has the same types of ships."
-                        + "\nYou will place your ships on the board first\nfollowed by your opponent."
+                        + "\nYou will place each ship on the board by click on \nthe position of the bow and stern."
                         + "\nYour opponent's ships will be hidden from\nyou, and yours from your opponent."
-                        + "\n\nTo fire at your enemy, enter the column letter\nand row number you wish to target."
+                        + "\n\nTo fire at your enemy, click the square on their \nboard you want to target."
                         + "\nYou cannot fire at your own ships."
-                        + "\n\nIf you hit an enemy ship, a red dot will appear\nat the location you targeted."
-                        + "\nIf you miss your enemy's ship, a white dot\nwill appear in the location you targeted."
-                        + "\nIf you sink an enemy ship, you will be informed by,\n\"You sunk one of the computer's ships!\""
+                        + "\n\nIf you hit an enemy ship, the targeted \nsquare will turn red."
+                        + "\nIf you miss your enemy's ship, the targeted \nsquare will turn white."
+                        + "\nIf you sink an enemy ship, the sunken \nship will turn black."
                         + "\n\nThe first player to sink all of their enemy's ships\nwins the game.",
                         "Tutorial", 
                         JOptionPane.INFORMATION_MESSAGE);
@@ -240,7 +240,9 @@ public class PlayBattleship extends JFrame implements ActionListener {
       //If player clicks reset button  
       if (e.getSource() == reset) {
          human.reset(humanBoard);
-         showMsg("<html><center>Commander, your ship board has been reset!</html>");
+         for (int i = 0; i < 8; i++) 
+            for (int j = 0; j < 8; j++) 
+               humanBoard[i][j].setEnabled(true);
       }
       //If player clicks surrender button
       if (e.getSource() == surrender) {
@@ -387,15 +389,14 @@ public class PlayBattleship extends JFrame implements ActionListener {
       msg.setVisible(true);
        //After 30 seconds the message disappears
        //Creating a timer that waits 30 seconds to hide the JLabel
-      Timer t = new Timer(30000, 
-         new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               msg.setVisible(false);
-            }
-         });
-      t.start();
-   }
+      //Timer t = new Timer(30000, 
+         //new ActionListener() {
+            //@Override
+            //public void actionPerformed(ActionEvent e) {
+              // msg.setVisible(false);
+            //}
+        // });
+      //t.start();
 
    //JOptionPane that appears when you win or lose (message displayed depends)
    public void winLoseMsg() {
@@ -433,7 +434,7 @@ public class PlayBattleship extends JFrame implements ActionListener {
       //Disposing the old PlayBattleship object
       setVisible(false);
       dispose();
-      //Resetting the count so the human board is created with setShip actionListener
+      //Resetting the count so the human board is created with setShip ActionListeners
       Block.setCount(0);
       //Creating a new PlayBattleship object
       PlayBattleship game = new PlayBattleship();
