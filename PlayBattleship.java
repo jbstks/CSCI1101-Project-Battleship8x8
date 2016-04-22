@@ -385,19 +385,9 @@ public class PlayBattleship extends JFrame implements ActionListener {
 
    //Shows message for 30 seconds then disappears
    public void showMsg(String m) {
-       //Set the text and make it visible
+      //Set the text and make it visible
       msg.setText(m);
       msg.setVisible(true);
-       //After 30 seconds the message disappears
-       //Creating a timer that waits 30 seconds to hide the JLabel
-      //Timer t = new Timer(30000, 
-         //new ActionListener() {
-            //@Override
-            //public void actionPerformed(ActionEvent e) {
-              // msg.setVisible(false);
-            //}
-        // });
-      //t.start();
    }
 
    //JOptionPane that appears when you win or lose (message displayed depends)
